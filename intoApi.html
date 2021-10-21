@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json</title>
+</head>
+
+<body>
+
+    <h1>json</h1>
+    <h1>javascript object notation</h1>
+    <ul id="user_container">
+    </ul>
+
+    <input id="title" type="text" placeholder="tital" >
+    <br>
+    <input id="name" type="text" placeholder="post name">
+    <br>
+    <button id="submit">submit</button>
+
+    <script>
+
+        // get some post
+
+        // const postInfo = { title: 'food',body: 'zubair',userId: 1, }
+
+        document.getElementById('submit').addEventListener( "click" , function () {
+            const title = document.getElementById('title').value;
+            const name = document.getElementById('name').value;
+            const post = {title:title , name:name};
+            nowPostServer(post);
+        } )
+
+            function nowPostServer(postInfo) {
+                fetch('https://jsonplaceholder.typicode.com/posts', {
+                    method: 'POST',
+                    body: JSON.stringify(postInfo),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                    .then((response) => response.json())
+                    .then((data) => console.log(data));
+
+            }
+
+
+        // get some user_name
+
+        // fetch('https://jsonplaceholder.typicode.com/users')
+        //   .then(response => response.json())
+        //   .then(json => displayUser(json))
+        //   .catch(error => console.log(error)) ;
+
+        // function displayUser(users) {
+
+        //     const userNames = users.map(use => use.username);
+        //     const ul = document.getElementById("user_container");
+
+        //     for (let i = 0; i < userNames.length; i++) {
+        //         const user = userNames[i];
+        //         const li = document.createElement("li");
+        //         li.innerText = user;
+        //         ul.appendChild(li);
+        //     }
+
+        // }
+
+
+        // json work demo
+
+
+        // const user = {
+
+        //     id:20 , 
+        //     name:"zubair", 
+        //     school:"bangladesh bnak school",
+        //     lover:{
+        //         name:"jamila",
+        //         favFood:"milk food",
+        //     },
+        //     friendAge:[10, 20, 40], 
+        //     friend:["masud" , "jamal" , "kamal" ]
+
+        // };
+        // const userJson = JSON.stringify(user);
+        // console.log(userJson);
+        // const Json = JSON.parse(userJson);
+        // console.log(Json);
+
+    </script>
+
+</body>
+
+</html>
